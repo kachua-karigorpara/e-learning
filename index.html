@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ইংলিশ শিখি – সম্পূর্ণ ফ্রি</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--tx:#1b2333;--mu:#5d6b82;--pr:#4f46e5;--pr2:#7c3aed;--bd:#e3e8f2;--ok:#059669;--hl:#eef2ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1420;--card:#171e2e;--tx:#e8ecf6;--mu:#9aa8c2;--bd:#27314a;--hl:#1f2750;--pr:#818cf8;--pr2:#a78bfa;--ok:#34d399}}
+:root[data-theme="dark"]{--bg:#0f1420;--card:#171e2e;--tx:#e8ecf6;--mu:#9aa8c2;--bd:#27314a;--hl:#1f2750;--pr:#818cf8;--pr2:#a78bfa;--ok:#34d399}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:'Hind Siliguri',system-ui,sans-serif;line-height:1.6}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--card);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px;padding:10px 16px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--card);z-index:10}
+.logo{font-weight:700;font-size:1.2rem;background:linear-gradient(90deg,var(--pr),var(--pr2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sp{flex:1}
+button{font:inherit;cursor:pointer}
+.tg{border:1px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:10px;padding:4px 10px}
+.hero{padding:36px 16px;text-align:center;background:linear-gradient(135deg,var(--pr),var(--pr2));color:#fff}
+.hero h1{margin:0 0 6px;font-size:clamp(1.6rem,5vw,2.4rem)}
+.hero p{margin:0;opacity:.92}
+.badge{display:inline-block;margin-top:12px;background:rgba(255,255,255,.2);padding:3px 14px;border-radius:99px;font-size:.9rem}
+nav{display:flex;gap:8px;overflow-x:auto;padding:14px 16px;max-width:1100px;margin:auto}
+nav button{white-space:nowrap;border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:8px 16px;border-radius:99px;font-weight:500}
+nav button.on{background:linear-gradient(90deg,var(--pr),var(--pr2));color:#fff;border-color:transparent}
+main{max-width:1100px;margin:auto;padding:0 16px 40px}
+.intro{background:var(--hl);border-radius:14px;padding:14px 18px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.card h3{margin:0 0 4px;color:var(--pr)}
+.card .bn{color:var(--mu);font-size:.92rem;margin:0 0 8px}
+.f{background:var(--hl);border-radius:8px;padding:6px 10px;font-size:.88rem;margin-bottom:8px;overflow-wrap:anywhere}
+ol{margin:0;padding-left:22px}
+li{padding:2px 0;font-size:.95rem}
+li small{color:var(--mu)}
+.wr{color:#dc2626}.rt{color:var(--ok)}
+#chat{display:flex;flex-direction:column;height:min(70vh,560px)}
+#msgs{flex:1;overflow-y:auto;padding:8px;display:flex;flex-direction:column;gap:8px}
+.m{max-width:80%;padding:8px 12px;border-radius:14px;background:var(--hl);align-self:flex-start;overflow-wrap:anywhere}
+.m.me{align-self:flex-end;background:linear-gradient(90deg,var(--pr),var(--pr2));color:#fff}
+.m b{display:block;font-size:.75rem;opacity:.8}
+.row{display:flex;gap:8px;margin-top:8px}
+input{font:inherit;flex:1;min-width:0;padding:10px 12px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx)}
+.go{background:linear-gradient(90deg,var(--pr),var(--pr2));color:#fff;border:0;border-radius:10px;padding:0 18px}
+footer{text-align:center;color:var(--mu);padding:20px;font-size:.9rem}
+</style>
+</head>
+<body>
+<header><span class="logo">📘 ইংলিশ শিখি</span><span class="sp"></span><button class="tg" id="th">🌓</button></header>
+<section class="hero"><h1>বিনামূল্যে ইংরেজি শিখুন বাংলায়</h1><p>টেন্স, পার্টস অব স্পিচ, বাক্য, আর্টিকেল ও আরও অনেক কিছু</p><span class="badge">১০০% ফ্রি • কোনো পেইড কনটেন্ট নেই</span></section>
+<nav id="nav"></nav>
+<main id="app"></main>
+<footer>© ইংলিশ শিখি – সবার জন্য ফ্রি শিক্ষা</footer>
+<script>
+const $=s=>document.querySelector(s);
+const li=a=>'<ol>'+a.map(x=>'<li>'+x+'</li>').join('')+'</ol>';
+const card=(t,bn,f,l)=>`<div class="card"><h3>${t}</h3><p class="bn">${bn}</p>${f?'<div class="f">'+f+'</div>':''}${li(l)}</div>`;
+// ---- Tense generator ----
+const SUB=[['I','I'],['He','s'],['She','s'],['They','p'],['We','p'],['Rina','s'],['The boys','p'],['My father','s'],['You','p'],['The teacher','s']];
+const VB=[['eat','eats','ate','eaten','eating','rice'],['read','reads','read','read','reading','a book'],['play','plays','played','played','playing','football'],['write','writes','wrote','written','writing','a letter'],['watch','watches','watched','watched','watching','TV'],['sing','sings','sang','sung','singing','a song'],['clean','cleans','cleaned','cleaned','cleaning','the room'],['drink','drinks','drank','drunk','drinking','tea'],['learn','learns','learned','learned','learning','English'],['teach','teaches','taught','taught','teaching','grammar']];
+const TN=[['Present Indefinite','সাধারণ বর্তমান','Subject + V1 (s/es) + Object','নিয়মিত অভ্যাস, চিরন্তন সত্য'],['Present Continuous','ঘটমান বর্তমান','Subject + am/is/are + V-ing','এখন ঘটছে এমন কাজ'],['Present Perfect','পুরাঘটিত বর্তমান','Subject + has/have + V3','সদ্য শেষ হয়েছে বা ফল এখনো আছে'],['Present Perfect Continuous','পুরাঘটিত ঘটমান বর্তমান','Subject + has/have been + V-ing','অতীত থেকে এখন পর্যন্ত চলছে'],['Past Indefinite','সাধারণ অতীত','Subject + V2 + Object','অতীতে শেষ হওয়া কাজ'],['Past Continuous','ঘটমান অতীত','Subject + was/were + V-ing','অতীতে কোনো সময়ে চলছিল'],['Past Perfect','পুরাঘটিত অতীত','Subject + had + V3','অতীতের দুই কাজের আগেরটি'],['Past Perfect Continuous','পুরাঘটিত ঘটমান অতীত','Subject + had been + V-ing','অতীতের আগে থেকে চলছিল'],['Future Indefinite','সাধারণ ভবিষ্যৎ','Subject + will/shall + V1','ভবিষ্যতে করবে'],['Future Continuous','ঘটমান ভবিষ্যৎ','Subject + will be + V-ing','ভবিষ্যতে কোনো সময়ে চলতে থাকবে'],['Future Perfect','পুরাঘটিত ভবিষ্যৎ','Subject + will have + V3','ভবিষ্যতের আগেই শেষ হবে'],['Future Perfect Continuous','পুরাঘটিত ঘটমান ভবিষ্যৎ','Subject + will have been + V-ing','ভবিষ্যৎ পর্যন্ত চলতে থাকবে']];
+function tense(k,i){const[S,t]=SUB[i],v=VB[i],O=v[5];const bp=S==='I'?'am':t==='s'?'is':'are',bw=t==='p'?'were':'was',h=t==='s'?'has':'have';
+const f=[`${t==='s'?v[1]:v[0]}`,`${bp} ${v[4]}`,`${h} ${v[3]}`,`${h} been ${v[4]}`,v[2],`${bw} ${v[4]}`,`had ${v[3]}`,`had been ${v[4]}`,`will ${v[0]}`,`will be ${v[4]}`,`will have ${v[3]}`,`will have been ${v[4]}`];
+return `${S} ${f[k]} ${O}.`}
+// ---- Data ----
+const POS=[['Noun','বিশেষ্য – নাম বোঝায়','boy=ছেলে,city=শহর,book=বই,Dhaka=ঢাকা,love=ভালোবাসা,river=নদী,teacher=শিক্ষক,water=পানি,school=স্কুল,happiness=সুখ'],['Pronoun','সর্বনাম – noun এর বদলে','I=আমি,you=তুমি,he=সে(পু),she=সে(স্ত্রী),it=এটি,we=আমরা,they=তারা,this=এই,who=কে,mine=আমার'],['Verb','ক্রিয়া – কাজ বোঝায়','go=যাওয়া,eat=খাওয়া,read=পড়া,write=লেখা,run=দৌড়ানো,sleep=ঘুমানো,play=খেলা,sing=গান করা,is=হওয়া,have=থাকা'],['Adjective','বিশেষণ – noun এর গুণ','good=ভালো,tall=লম্বা,red=লাল,small=ছোট,beautiful=সুন্দর,clever=চালাক,hot=গরম,new=নতুন,honest=সৎ,poor=গরিব'],['Adverb','ক্রিয়াবিশেষণ – কীভাবে/কখন','quickly=দ্রুত,slowly=ধীরে,always=সবসময়,never=কখনো না,here=এখানে,now=এখন,very=খুব,well=ভালোভাবে,today=আজ,often=প্রায়ই'],['Preposition','পদান্বয়ী অব্যয়','in=মধ্যে,on=উপরে,at=এ,under=নিচে,by=দ্বারা,with=সাথে,from=থেকে,to=প্রতি,between=মাঝে,before=আগে'],['Conjunction','সংযোজক অব্যয়','and=এবং,but=কিন্তু,or=অথবা,because=কারণ,if=যদি,although=যদিও,so=তাই,while=যখন,unless=যদি না,though=তবুও'],['Interjection','আবেগসূচক অব্যয়','Oh=ওহ,Wow=বাহ,Alas=হায়,Hurrah=জয়,Ah=আহ,Bravo=সাবাস,Ouch=উফ,Hey=এই,Hush=চুপ,Fie=ছিঃ']];
+const SEN=[['Assertive','বিবৃতিমূলক বাক্য','Subject + Verb + Object','I like tea.|She is a doctor.|They live in Dhaka.|The sun rises in the east.|Birds can fly.|He does not eat meat.|We are friends.|My mother cooks well.|It is raining today.|Rahim plays cricket.'],['Interrogative','প্রশ্নবোধক বাক্য','Helping verb/Wh + Subject + Verb?','Where do you live?|Is she a teacher?|What is your name?|Do they play football?|Can you help me?|Why are you late?|Who is that boy?|Have you eaten lunch?|How old are you?|Will it rain today?'],['Imperative','অনুজ্ঞাসূচক বাক্য','Verb দিয়ে শুরু (আদেশ/অনুরোধ)','Open the door.|Please sit down.|Be quiet.|Do your homework.|Don’t run here.|Close the window.|Come here.|Help the poor.|Let us go.|Speak the truth.'],['Exclamatory','আবেগসূচক বাক্য','What/How + ... !','What a beautiful day!|How nice you are!|Wow, we won!|Alas! He is dead.|Hurrah! We passed.|What a pity!|How fast he runs!|What a lovely garden!|Oh, I am sorry!|Bravo! Well done!'],['Optative','প্রার্থনামূলক বাক্য','May + Subject + Verb','May you live long.|Long live Bangladesh!|May Allah bless you.|Wish you success.|May you be happy.|God save the king.|May peace prevail.|Wish you a happy life.|May your dreams come true.|Long live our friendship!']];
+const ART=[['A','ব্যঞ্জনধ্বনি দিয়ে শুরু শব্দের আগে','I have a book.|A cat is sleeping.|He studies in a university.|She is a European.|Give me a one-taka note.|My uncle is a doctor.|They built a house.|He is a student.|This is a useful tool.|A girl is singing.'],['An','স্বরধ্বনি দিয়ে শুরু শব্দের আগে','I ate an apple.|She is an honest girl.|He waited for an hour.|It is an umbrella.|He is an engineer.|I saw an elephant.|This is an easy lesson.|She wore an orange dress.|An ant is small.|He is an M.A. student.'],['The','নির্দিষ্ট কিছু বোঝাতে','The sun is hot.|The Padma is a big river.|I saw the boy you mentioned.|The Quran is holy.|Open the door.|The moon is bright.|She is the best student.|The poor need help.|We live in the village.|The teacher is kind.'],['No Article','Article লাগে না','I like tea.|Dogs are loyal.|He goes to school.|Rahim plays football.|Honesty is the best policy.|We eat rice daily.|She speaks English.|Bangladesh is beautiful.|Water is essential.|They went to bed early.']];
+const PER=[['First Person','উত্তম পুরুষ – I, We, my, our','I am a student.|We love our country.|I read a book.|We play cricket.|My name is Rafi.|I live in Dhaka.|We are friends.|I can swim.|Our school is big.|I will help you.'],['Second Person','মধ্যম পুরুষ – You, your','You are kind.|You read well.|Your pen is red.|Do you know me?|You will pass.|You are my friend.|Where are you going?|You have a nice voice.|You must study.|Your mother is calling.'],['Third Person','নাম পুরুষ – He, She, It, They','He is a farmer.|She sings well.|It is a cat.|They play football.|Rina reads a book.|The boy is clever.|My father works hard.|The birds fly high.|Karim is absent.|She loves her mother.']];
+const NUM=[['book','books','বই'],['child','children','শিশু'],['man','men','পুরুষ'],['woman','women','নারী'],['tooth','teeth','দাঁত'],['foot','feet','পা'],['mouse','mice','ইঁদুর'],['box','boxes','বাক্স'],['city','cities','শহর'],['leaf','leaves','পাতা']];
+const SV=[['একবচন subject = একবচন verb','The boy play.','The boy plays.'],['বহুবচন subject = বহুবচন verb','The boys plays.','The boys play.'],['and দিয়ে যুক্ত দুই subject = বহুবচন','Rahim and Karim is friends.','Rahim and Karim are friends.'],['Either...or / Neither...nor: কাছের subject অনুযায়ী','Either he or I is wrong.','Either he or I am wrong.'],['Each, every, everyone, nobody = একবচন','Everyone are here.','Everyone is here.'],['Collective noun (team, family) = একবচন','The team are winning.','The team is winning.'],['Mathematics, news, physics = একবচন','Mathematics are easy.','Mathematics is easy.'],['A number of = বহুবচন; The number of = একবচন','A number of students is absent.','A number of students are absent.'],['I এর সাথে am/was; He/She/It এর সাথে is/has','I is a student.','I am a student.'],['Uncountable noun (water, milk) = একবচন','Water are pure.','Water is pure.']];
+const sp=s=>s.split('|');
+const pairs=s=>s.split(',').map(x=>{const[a,b]=x.split('=');return `<b>${a}</b> <small>– ${b}</small>`});
+const SECS={
+'tense':['১. Tense',()=>`<div class="intro">১২টি Tense – প্রতিটির ১০টি করে উদাহরণ (মোট ১২০টি)।</div><div class="grid">${TN.map((t,k)=>card(t[0],t[1]+' • '+t[3],t[2],SUB.map((_,i)=>tense(k,i)))).join('')}</div>`],
+'pos':['২. Parts of Speech',()=>`<div class="intro">ইংরেজিতে ৮ ধরনের Parts of Speech আছে। প্রতিটির ১০টি উদাহরণ বাংলা অর্থসহ।</div><div class="grid">${POS.map(p=>card(p[0],p[1],'',pairs(p[2]))).join('')}</div>`],
+'sen':['৩. Sentence',()=>`<div class="intro">অর্থ অনুযায়ী বাক্য ৫ প্রকার। প্রতিটির ১০টি উদাহরণ।</div><div class="grid">${SEN.map(p=>card(p[0],p[1],p[2],sp(p[3]))).join('')}</div>`],
+'art':['৪. Article',()=>`<div class="intro">Article ৩টি: a, an, the। সাথে No Article-এর ব্যবহারও দেখুন।</div><div class="grid">${ART.map(p=>card(p[0],p[1],'',sp(p[2]))).join('')}</div>`],
+'per':['৫. Person',()=>`<div class="intro">Person ৩ প্রকার। প্রতিটির ১০টি উদাহরণ।</div><div class="grid">${PER.map(p=>card(p[0],p[1],'',sp(p[2]))).join('')}</div>`],
+'num':['৬. Number',()=>`<div class="intro">Number দুই প্রকার: Singular (একবচন) ও Plural (বহুবচন)। সাধারণ নিয়ম: শব্দের শেষে s/es যোগ হয়।</div><div class="grid">${card('Singular → Plural','একবচন থেকে বহুবচন','Regular: s/es • Irregular: শব্দ বদলে যায়',NUM.map(n=>`<b>${n[0]}</b> → <b>${n[1]}</b> <small>(${n[2]})</small>`))}${card('Singular Sentences','একবচন বাক্য','',['The boy is tall.','A bird sings.','This book is new.','She has a pen.','He plays well.','The child is happy.','My tooth hurts.','The leaf is green.','That box is heavy.','The man is old.'])}${card('Plural Sentences','বহুবচন বাক্য','',['The boys are tall.','Birds sing.','These books are new.','They have pens.','They play well.','The children are happy.','My teeth hurt.','The leaves are green.','Those boxes are heavy.','The men are old.'])}</div>`],
+'sv':['৭. Subject-Verb Agreement',()=>`<div class="intro">Subject-এর person ও number অনুযায়ী Verb বসে। নিচে ১০টি নিয়ম – ভুল ও শুদ্ধ উদাহরণসহ।</div><div class="grid">${SV.map((r,i)=>`<div class="card"><h3>নিয়ম ${i+1}</h3><p class="bn">${r[0]}</p><p class="wr">✗ ${r[1]}</p><p class="rt">✓ ${r[2]}</p></div>`).join('')}</div>`],
+'chat':['৮. লাইভ চ্যাট',()=>`<div class="intro">ইংরেজিতে কথা বলার অনুশীলন করুন! একাধিক ট্যাব/উইন্ডো খুললে মেসেজ সাথে সাথে আদান-প্রদান হয়। চ্যাট অস্থায়ী – পেজ রিফ্রেশ করলে মুছে যায়।</div><div class="card" id="chat"><div class="row" style="margin:0 0 8px"><input id="nm" placeholder="আপনার নাম / Your name" maxlength="20"></div><div id="msgs"></div><div class="row"><input id="tx" placeholder="Type in English..." maxlength="300"><button class="go" id="sd">Send ➤</button></div></div>`,initChat]
+};
+let bc,uid=Math.random().toString(36).slice(2);
+const TIPS=['Nice! Try using a full sentence.','Good job! Can you write it in past tense?','Great! Remember: He/She/It + verb(s).','Well done! Add an adjective to make it better.','Keep going! Ask me a question in English.'];
+function add(m){const d=document.createElement('div');d.className='m'+(m.id===uid||m.bot==='me'?' me':'');const b=document.createElement('b');b.textContent=m.name;d.append(b,document.createTextNode(m.text));const box=$('#msgs');if(!box)return;box.append(d);box.scrollTop=box.scrollHeight}
+function initChat(){
+ if(bc)bc.close();
+ try{bc=new BroadcastChannel('bn-english-chat');bc.onmessage=e=>add(e.data)}catch(e){bc=null}
+ add({name:'Practice Bot 🤖',text:'Hello! Say hi in English. Use another tab to chat with a friend.'});
+ const send=()=>{const t=$('#tx').value.trim();if(!t)return;const m={id:uid,name:$('#nm').value.trim()||'Guest',text:t};add(m);if(bc)bc.postMessage(m);$('#tx').value='';
+  setTimeout(()=>add({name:'Practice Bot 🤖',text:TIPS[Math.floor(Math.random()*TIPS.length)],bot:'x'}),700)};
+ $('#sd').onclick=send;$('#tx').onkeydown=e=>{if(e.key==='Enter')send()};
+}
+function show(k){document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.k===k));const s=SECS[k];$('#app').innerHTML=s[1]();if(s[2])s[2]();scrollTo({top:0});location.hash=k}
+$('#nav').innerHTML=Object.entries(SECS).map(([k,v])=>`<button data-k="${k}">${v[0]}</button>`).join('');
+$('#nav').onclick=e=>{if(e.target.dataset.k)show(e.target.dataset.k)};
+$('#th').onclick=()=>{const r=document.documentElement,d=getComputedStyle(r).getPropertyValue('--bg').trim()==='#0f1420';r.dataset.theme=d?'light':'dark'};
+const h=location.hash.slice(1);show(SECS[h]?h:'tense');
+</script>
+</body>
+</html>
